@@ -277,6 +277,31 @@ End-to-end evaluation was verified across diverse web traffic scenarios:
 \subsection{Latency and Throughput}
 Average feature extraction latency across 5,000 runs was 0.42\,ms per URL on standard consumer hardware. Model inference executed in 0.18\,ms, satisfying requirements for real-time in-browser screening before page rendering.
 
+\subsection{Comparative Analysis: Baselines vs. PhishGuard Improvements}
+To rigorously quantify the architectural improvements of PhishGuard, Table~\ref{tab:comparison} contrasts our multi-tiered framework against standard baseline paradigms: static blacklists (e.g., Safe Browsing), active DOM/headless crawlers, and naive single-tier ML models.
+
+\begin{table}[htbp]
+\caption{Comparative Analysis: Existing Paradigms vs. PhishGuard}
+\label{tab:comparison}
+\begin{center}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Capability / Metric} & \textbf{Static Blacklists} & \textbf{DOM Crawlers} & \textbf{Naive ML} & \textbf{PhishGuard (Ours)} \\
+\hline
+Zero-Day Detection Window   & 4--8 hr lag (Poor)         & Real-time             & Real-time         & \textbf{Immediate ($<$ 1\,ms)} \\
+Inspection Triage Latency   & 50--150\,ms                & 1,500--3,500\,ms      & 1--5\,ms          & \textbf{0.60\,ms (Sub-ms)} \\
+Client Drive-By Exposure    & Moderate                   & High (Remote Fetch)   & None              & \textbf{Zero (Fetch-Free)} \\
+Pre-Navigation Interception & No (Passive Sync)          & No (Post-Fetch)       & No                & \textbf{Yes (Manifest V3)} \\
+Search Query False Positives& 0\%                        & Low                   & High ($>$ 12\%)   & \textbf{0\% (Domain Authority)} \\
+Resilience to Tier Failure  & N/A                        & Complete Abort        & None              & \textbf{Dynamic Aggregation} \\
+Explainable Attribution     & None (Binary Hit)          & Low                   & Opaque Score      & \textbf{Granular Features} \\
+\hline
+\end{tabular}%
+}
+\end{center}
+\end{table}
+
 \section{Discussion and Limitations}
 While fetch-free lexical triage provides immediate, privacy-preserving client defense, it exhibits inherent limitations. If adversaries compromise authentic high-reputation domains (e.g., hosting forms on legitimate cloud infrastructure), URL syntax alone may produce false negatives. Furthermore, shortener redirection requires expanding the final destination prior to classification. Incorporating WHOIS domain age lookups and DNSSEC validation represents the immediate path to full defense-in-depth.
 
