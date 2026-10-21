@@ -296,11 +296,17 @@ export default function AboutPage() {
           </p>
           <div className="p-4 rounded-xl bg-zinc-900/60 border border-zinc-800 text-sm">
             <div className="font-semibold text-zinc-100">School of Engineering &amp; Technology</div>
-            <div className="text-zinc-400">Department of Computer Science Engineering (AI &amp; ML)</div>
+            <div className="text-zinc-400">Department of Computer Science &amp; Engineering (3rd Year B.Tech CSE)</div>
             <div className="text-zinc-400">Pimpri Chinchwad University, Pune, India</div>
           </div>
-          <div className="pt-2 text-xs sm:text-sm text-zinc-400">
-            <strong>Project Team:</strong> Kedar Kapse · Ritesh Kumar · Saksham Sharma · Saurabh Singh
+          <div className="pt-2 text-xs sm:text-sm text-zinc-400 space-y-1">
+            <div><strong>Project Team (3rd Year B.Tech CSE):</strong></div>
+            <div className="font-mono text-xs text-zinc-300">
+              Kedar Kapse (kedar.kapse24@pcu.edu.in) · Ritesh Kumar (ritesh.kumar24@pcu.edu.in)
+            </div>
+            <div className="font-mono text-xs text-zinc-300">
+              Saksham Sharma (saksham.sharma24@pcu.edu.in) · Saurabh Singh (saurabh.singh24@pcu.edu.in)
+            </div>
           </div>
         </div>
       </div>
