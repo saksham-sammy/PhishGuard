@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <!-- Warm Obsidian Body Gradient -->
+    <linearGradient id="shieldObsidian" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#24262d" />
+      <stop offset="50%" stop-color="#18191f" />
+      <stop offset="100%" stop-color="#111215" />
+    </linearGradient>
+
+    <!-- Warm Amber Accent Gradient -->
+    <linearGradient id="warmGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24" />
+      <stop offset="100%" stop-color="#d97706" />
+    </linearGradient>
+  </defs>
+
+  <!-- Clean Minimalist Shield Contour -->
+  <path d="M64 12 L106 28 V64 C106 89 64 114 64 114 C64 114 22 89 22 64 V28 Z"
+        fill="url(#shieldObsidian)" stroke="#383a45" stroke-width="2" stroke-linejoin="round" />
+
+  <!-- Subtle Inner Inset Line -->
+  <path d="M64 20 L98 33 V62 C98 83 64 104 64 104 C64 104 30 83 30 62 V33 Z"
+        fill="none" stroke="#2d303a" stroke-width="1.5" />
+
+  <!-- Elegant Golden Center Emblem: Secure Minimalist Check / Keyhole Motif -->
+  <path d="M52 50 C52 43.37 57.37 38 64 38 C70.63 38 76 43.37 76 50 V58 H52 Z"
+        fill="none" stroke="url(#warmGold)" stroke-width="3" stroke-linecap="round" />
+
+  <!-- Center Vault Node -->
+  <rect x="47" y="58" width="34" height="26" rx="5" fill="#18191f" stroke="url(#warmGold)" stroke-width="2" />
+  
+  <!-- Subtle Amber Aperture Center -->
+  <circle cx="64" cy="69" r="3" fill="#f59e0b" />
+  <path d="M64 72 V77" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" />
+</svg>

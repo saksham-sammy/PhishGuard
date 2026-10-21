@@ -1,0 +1,40 @@
+{
+  "model_name": "Logistic Regression",
+  "dataset_source": "PhiUSIIL Phishing URL Dataset (UCI ML Repository, CC BY 4.0)",
+  "dataset_rows": 22511,
+  "train_size": 18008,
+  "test_size": 4503,
+  "accuracy": 1.0,
+  "precision": 1.0,
+  "recall": 1.0,
+  "f1_score": 1.0,
+  "confusion_matrix": [
+    [
+      1502,
+      0
+    ],
+    [
+      0,
+      3001
+    ]
+  ],
+  "class_labels": [
+    "Legitimate",
+    "Phishing"
+  ],
+  "feature_importances": {},
+  "all_models": {
+    "Logistic Regression": {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0
+    },
+    "Random Forest": {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0
+    }
+  }
+}

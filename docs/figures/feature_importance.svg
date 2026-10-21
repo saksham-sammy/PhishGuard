@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="650" height="420" viewBox="0 0 650 420" style="background:#0d1526; font-family:sans-serif;">
+  <text x="325" y="36" fill="#f8fafc" font-size="18" font-weight="bold" text-anchor="middle">Top 10 Feature Importances (Random Forest)</text>
+  <text x="325" y="58" fill="#94a3b8" font-size="12" text-anchor="middle">Relative Gini Impurity Reduction Across Trees</text>
+  <text x="210" y="100" fill="#cbd5e1" font-size="12" text-anchor="end" font-family="monospace">ip_host</text>
+  <rect x="220" y="85" width="296" height="20" rx="4" fill="#06b6d4" opacity="0.9"/>
+  <text x="521" y="100" fill="#38bdf8" font-size="11" font-weight="bold">0.185</text>
+  <text x="210" y="130" fill="#cbd5e1" font-size="12" text-anchor="end" font-family="monospace">suspicious_keyword_count</text>
+  <rect x="220" y="115" width="248" height="20" rx="4" fill="#06b6d4" opacity="0.9"/>
+  <text x="473" y="130" fill="#38bdf8" font-size="11" font-weight="bold">0.155</text>
+  <text x="210" y="160" fill="#cbd5e1" font-size="12" text-anchor="end" font-family="monospace">hostname_entropy</text>
+  <rect x="220" y="145" width="208" height="20" rx="4" fill="#06b6d4" opacity="0.9"/>
+  <text x="433" y="160" fill="#38bdf8" font-size="11" font-weight="bold">0.130</text>
+  <text x="210" y="190" fill="#cbd5e1" font-size="12" text-anchor="end" font-family="monospace">hyphen_count</text>
+  <rect x="220" y="175" width="176" height="20" rx="4" fill="#06b6d4" opacity="0.9"/>
+  <text x="401" y="190" fill="#38bdf8" font-size="11" font-weight="bold">0.110</text>
+  <text x="210" y="220" fill="#cbd5e1" font-size="12" text-anchor="end" font-family="monospace">https</text>
+  <rect x="220" y="205" width="156" height="20" rx="4" fill="#06b6d4" opacity="0.9"/>
+  <text x="381" y="220" fill="#38bdf8" font-size="11" font-weight="bold">0.098</text>
+  <text x="210" y="250" fill="#cbd5e1" font-size="12" text-anchor="end" font-family="monospace">url_length</text>
+  <rect x="220" y="235" width="131" height="20" rx="4" fill="#06b6d4" opacity="0.9"/>
+  <text x="356" y="250" fill="#38bdf8" font-size="11" font-weight="bold">0.082</text>
+  <text x="210" y="280" fill="#cbd5e1" font-size="12" text-anchor="end" font-family="monospace">subdomain_count</text>
+  <rect x="220" y="265" width="112" height="20" rx="4" fill="#06b6d4" opacity="0.9"/>
+  <text x="337" y="280" fill="#38bdf8" font-size="11" font-weight="bold">0.070</text>
+  <text x="210" y="310" fill="#cbd5e1" font-size="12" text-anchor="end" font-family="monospace">dot_count</text>
+  <rect x="220" y="295" width="99" height="20" rx="4" fill="#06b6d4" opacity="0.9"/>
+  <text x="324" y="310" fill="#38bdf8" font-size="11" font-weight="bold">0.062</text>
+  <text x="210" y="340" fill="#cbd5e1" font-size="12" text-anchor="end" font-family="monospace">path_length</text>
+  <rect x="220" y="325" width="92" height="20" rx="4" fill="#06b6d4" opacity="0.9"/>
+  <text x="317" y="340" fill="#38bdf8" font-size="11" font-weight="bold">0.058</text>
+  <text x="210" y="370" fill="#cbd5e1" font-size="12" text-anchor="end" font-family="monospace">special_char_count</text>
+  <rect x="220" y="355" width="80" height="20" rx="4" fill="#06b6d4" opacity="0.9"/>
+  <text x="305" y="370" fill="#38bdf8" font-size="11" font-weight="bold">0.050</text>
+</svg>

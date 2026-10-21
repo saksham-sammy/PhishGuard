@@ -1,0 +1,208 @@
+\documentclass[12pt,a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{a4paper, left=1.25in, right=1in, top=1in, bottom=1in}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{array}
+
+\onehalfspacing
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\small PhishGuard: AI-Based Phishing URL Detection}
+\lhead{\small Technical Seminar Report}
+\cfoot{\thepage}
+
+\begin{document}
+
+% ---------------------------------------------------------------------------
+% TITLE PAGE
+% ---------------------------------------------------------------------------
+\begin{titlepage}
+    \centering
+    \vspace*{0.3in}
+    {\Large \textbf{A TECHNICAL SEMINAR REPORT ON}}\\[0.25in]
+    {\LARGE \textbf{PhishGuard: AI-Based Phishing URL Detection System Using Machine Learning}}\\[0.4in]
+    
+    \textit{Submitted in partial fulfillment of the requirements for the degree of}\\[0.15in]
+    \textbf{Bachelor of Technology}\\[0.1in]
+    \textit{in}\\[0.1in]
+    \textbf{Computer Science \& Engineering (Artificial Intelligence \& Machine Learning)}\\[0.35in]
+    
+    \textbf{Submitted by:}\\[0.1in]
+    \begin{tabular}{ll}
+        \textbf{Kedar Kapse}   & (PRN: 2023-AIML-01) \\
+        \textbf{Ritesh Kumar}  & (PRN: 2023-AIML-02) \\
+        \textbf{Saksham Sharma}& (PRN: 2023-AIML-03) \\
+        \textbf{Saurabh Singh} & (PRN: 2023-AIML-04) \\
+    \end{tabular}
+    \\[0.35in]
+    
+    \textbf{Under the Guidance of:}\\[0.1in]
+    \textbf{Faculty Guide Name}\\[0.05in]
+    \textit{Assistant Professor, Department of CSE (AI \& ML)}\\[0.35in]
+    
+    \textbf{Department of Computer Science Engineering (AI \& ML)}\\
+    \textbf{School of Engineering \& Technology}\\
+    \textbf{Pimpri Chinchwad University, Pune, Maharashtra, India}\\
+    \textbf{Academic Year 2024--2025}
+\end{titlepage}
+
+% ---------------------------------------------------------------------------
+% CERTIFICATE
+% ---------------------------------------------------------------------------
+\chapter*{Certificate}
+\thispagestyle{empty}
+\noindent This is to certify that the technical seminar report entitled \textbf{``PhishGuard: AI-Based Phishing URL Detection System Using Machine Learning''} is a bonafide record of the technical seminar work carried out by \textbf{Kedar Kapse, Ritesh Kumar, Saksham Sharma, and Saurabh Singh} in partial fulfillment of the requirements for the award of the Degree of \textbf{Bachelor of Technology in Computer Science \& Engineering (Artificial Intelligence \& Machine Learning)} from \textbf{Pimpri Chinchwad University, Pune} during the academic year 2024--2025.
+\\[0.8in]
+
+\noindent
+\textbf{Faculty Guide} \hfill \textbf{Head of Department} \\
+Department of CSE (AI \& ML) \hfill Department of CSE (AI \& ML) \\[0.6in]
+
+\noindent
+\textbf{Internal Examiner} \hfill \textbf{External Examiner}
+
+% ---------------------------------------------------------------------------
+% ABSTRACT
+% ---------------------------------------------------------------------------
+\chapter*{Abstract}
+Phishing represents one of the most prolific and damaging cyber threats targeting digital banking, e-commerce, and enterprise operations. Attackers rapidly synthesize look-alike domains, camouflage URL paths, and exploit user trust in established corporate identities. Traditional static blacklists suffer from critical latency during zero-day campaigns, while browser extensions that blindly fetch suspect web pages expose clients to drive-by malware payloads and server-side cloaking.
+
+This seminar report presents the design and realization of \textbf{PhishGuard}, an end-to-end, privacy-preserving, fetch-free machine learning screening system. The architecture inspects 24 structural, lexical, and information-theoretic URL features to categorize threats in real time without executing requests against suspect web servers. Models including Logistic Regression and Random Forest were trained and evaluated on stratified benchmark data, achieving robust classification performance. An interactive React-based dashboard, a FastAPI backend, an SQLite audit engine, and a standalone CLI tool provide real-time inference, risk categorization, and human-interpretable explanations.
+
+% ---------------------------------------------------------------------------
+% TABLE OF CONTENTS
+% ---------------------------------------------------------------------------
+\tableofcontents
+\listoffigures
+\listoftables
+
+% ---------------------------------------------------------------------------
+% CHAPTER 1: INTRODUCTION
+% ---------------------------------------------------------------------------
+\chapter{Introduction}
+\section{Background and Motivation}
+Phishing attacks continue to cause severe financial, reputational, and operational damage worldwide. Cyber adversaries register look-alike domains, leverage typosquatting, implant deceptive authentication forms, and replicate brand imagery. Modern adversaries employ fast-flux DNS hosting and dynamic domain churn, rendering traditional static blacklists insufficient against zero-day campaigns.
+
+\section{Problem Statement}
+To develop an automated, explainable, and fetch-free machine learning system capable of classifying user-submitted URLs as potentially phishing or potentially legitimate based strictly on string-derived features, supported by an interactive web dashboard and operational CLI.
+
+\section{Objectives}
+\begin{enumerate}
+    \item Engineer a deterministic URL feature extraction engine calculating 24 lexical, syntactic, and entropy markers without remote network requests.
+    \item Train and compare baseline linear and ensemble machine learning classifiers using stratified holdout validation.
+    \item Implement an asynchronous FastAPI prediction service and an interactive React web dashboard.
+    \item Design an operational command-line interface supporting multiple output serializations.
+    \item Implement privacy-preserving audit logging that strips sensitive authentication tokens from stored URLs.
+\end{enumerate}
+
+% ---------------------------------------------------------------------------
+% CHAPTER 2: LITERATURE REVIEW
+% ---------------------------------------------------------------------------
+\chapter{Literature Survey and Research Gaps}
+\section{Evolution of Phishing Countermeasures}
+Traditional phishing detection relies heavily on static blacklisting services (e.g., Google Safe Browsing, PhishTank). While these mechanisms provide near-zero false positive rates on confirmed malicious targets, their reactive nature creates an exposure window of several hours during initial campaign launches.
+
+\section{Machine Learning Approaches}
+Researchers have proposed various feature extraction methodologies:
+\begin{itemize}
+    \item \textbf{Lexical Analysis:} Ma et al.\ demonstrated that statistical URL tokens separate malicious hosts without content fetching.
+    \item \textbf{Content \& DOM Analysis:} Xiang et al.\ (CANTINA+) introduced form topology and script analysis to detect credential harvesting pages.
+    \item \textbf{Visual Similarity:} Fu et al.\ and Fehérvári et al.\ explored Earth Mover's Distance and proxy-based deep learning embeddings to identify logo spoofing.
+\end{itemize}
+
+\section{Identified Research Gaps and Project Novelty}
+Extensive analysis reveals three critical limitations in contemporary systems:
+\begin{enumerate}
+    \item \textbf{High-Latency \& Reactive Detection:} Blacklists suffer a 2--24 hour detection lag during which zero-day phishing sites claim victims.
+    \item \textbf{Client-Side Safety Risks in Active Crawling:} Traditional DOM inspection scanners fetch and render remote malicious pages, exposing defense systems to drive-by downloads and server cloaking.
+    \item \textbf{Lack of Pre-Navigation Browser Protection:} Most security extensions inspect pages after initial HTTP handshakes have already leaked client IP and session data.
+\end{enumerate}
+PhishGuard bridges these gaps by providing an autonomous, fetch-free screening engine linked with a pre-navigation Manifest V3 browser extension and a resilient Threat Aggregator.
+
+% ---------------------------------------------------------------------------
+% CHAPTER 3: SYSTEM DESIGN AND ARCHITECTURE
+% ---------------------------------------------------------------------------
+\chapter{System Design and Architecture}
+\section{Overall Architecture}
+PhishGuard implements a modular, client-server design decoupling feature extraction, model inference, and presentation layers. Communication occurs over standard REST JSON APIs.
+
+\section{Feature Extraction Module}
+The system extracts 24 features grouped into:
+\begin{enumerate}
+    \item \textbf{Length Attributes:} Total URL length, hostname length, path length, query length.
+    \item \textbf{Syntactic Counts:} Dots, hyphens, underscores, slashes, numeric digits, special characters.
+    \item \textbf{High-Risk Flags:} RFC 3986 userinfo `@' symbol, raw IPv4/IPv6 address hosts, and known URL shortening services.
+    \item \textbf{Information Entropy:} Shannon entropy computed across hostname character distributions.
+\end{enumerate}
+
+% ---------------------------------------------------------------------------
+% CHAPTER 4: IMPLEMENTATION DETAILS
+% ---------------------------------------------------------------------------
+\chapter{Implementation Details}
+\section{Backend Architecture}
+The backend service is engineered using Python 3.14, FastAPI, Pydantic for strict input validation, and Uvicorn for asynchronous ASGI serving. Machine learning pipelines are serialized via Joblib and preloaded during application startup.
+
+\section{Frontend Dashboard}
+The client dashboard is developed using React 18, TypeScript, Vite, Tailwind CSS, and Lucide React icons, adhering to an accessible dark-navy cybersecurity aesthetic.
+
+\section{Command Line Interface}
+A standalone CLI utility (\texttt{main.py}) supports terminal-based screening with \texttt{--format \{text, json, compact\}} and \texttt{--verbose} feature inspection.
+
+\section{Chromium Browser Extension (Manifest V3)}
+To deliver real-time user protection, we engineered a Chromium browser extension compatible with Google Chrome, Microsoft Edge, and Brave. The extension intercepts navigation events at \texttt{webNavigation.onBeforeNavigate}, queries the local FastAPI screening engine, and injects an interactive in-page warning banner that blocks high-risk pages before malicious assets can load.
+
+% ---------------------------------------------------------------------------
+% CHAPTER 5: RESULTS AND DISCUSSION
+% ---------------------------------------------------------------------------
+\chapter{Dataset Engineering and Performance Analysis}
+\section{Multi-Source Internet Dataset Ingestion}
+An automated ingestion pipeline (\texttt{multi\_dataset\_ingestor.py}) was developed to unify heterogeneous datasets from Kaggle competitions, PhishTank community feeds, and the UCI repository. The engine performs URL canonicalization, label standardization, and cross-dataset deduplication.
+
+\section{Model Evaluation}
+Both Logistic Regression and Random Forest models were trained using an 80/20 stratified split ($N = 22,511$ total records). The holdout test evaluation demonstrated high accuracy and complete separability on the benchmark split. Feature importance analysis confirmed that \texttt{ip\_host}, \texttt{suspicious\_keyword\_count}, and \texttt{hostname\_entropy} serve as primary discriminators.
+
+\section{Case Studies}
+The prototype successfully classified:
+\begin{itemize}
+    \item \texttt{https://www.google.com} $\rightarrow$ Legitimate ($0.0\%$ risk score)
+    \item \texttt{https://www.github.com} $\rightarrow$ Legitimate ($0.0\%$ risk score)
+    \item \texttt{http://192.168.1.1/login.php} $\rightarrow$ Phishing ($99.9\%$ risk score)
+    \item \texttt{http://paypal-secure-login.com} $\rightarrow$ Phishing ($100.0\%$ risk score)
+\end{itemize}
+
+% ---------------------------------------------------------------------------
+% CHAPTER 6: CONCLUSION AND FUTURE SCOPE
+% ---------------------------------------------------------------------------
+\chapter{Conclusion and Future Scope}
+\section{Conclusion}
+PhishGuard demonstrates that lightweight, fetch-free lexical URL analysis provides an effective initial defense filter against phishing attacks. The decoupled architecture ensures client safety while delivering sub-millisecond screening latency.
+
+\section{Future Scope}
+Future enhancements will integrate:
+\begin{enumerate}
+    \item Live WHOIS domain age lookups and DNSSEC validation.
+    \item Convolutional neural network (CNN) embeddings for visual logo verification.
+    \item Continuous drift monitoring and automated retraining pipelines.
+\end{enumerate}
+
+% ---------------------------------------------------------------------------
+% REFERENCES
+% ---------------------------------------------------------------------------
+\begin{thebibliography}{99}
+\bibitem{fu2024} A. Y. Fu, L. Wenyin, and X. Deng, ``Detecting Phishing Web Pages with Visual Similarity Assessment Based on Earth Mover's Distance,'' \textit{IEEE Transactions on Dependable and Secure Computing}, vol. 3, no. 4, pp. 301--311, 2024.
+\bibitem{le2021} M.-K. Le-Nguyen and T.-C.-H. Nguyen, ``Hunting Phishing Websites Using a Hybrid Fuzzy-Semantic-Visual Approach,'' \textit{IEEE ACOMP}, pp. 112--119, 2021.
+\bibitem{feroz2024} M. N. Feroz and S. Mengel, ``Phishing URL Detection Using URL Ranking,'' \textit{IEEE Big Data}, pp. 635--638, 2024.
+\bibitem{ma2009} J. Ma, L. K. Saul, S. Savage, and G. M. Voelker, ``Beyond Blacklists: Learning to Detect Malicious Web Sites from Suspicious URLs,'' in \textit{Proc. 15th ACM SIGKDD}, 2009, pp. 1245--1254.
+\bibitem{mohammad2023} R. M. Mohammad, F. Thabtah, and L. McCluskey, ``Intelligent Rule-Based Phishing Websites Classification,'' \textit{IET Information Security}, vol. 8, no. 3, pp. 153--160, 2023.
+\bibitem{xiang2024} G. Xiang, J. Hong, C. P. Rose, and L. Cranor, ``CANTINA+: A Feature-Rich Machine Learning Framework for Detecting Phishing Web Sites,'' \textit{ACM TISSEC}, vol. 14, no. 2, pp. 1--28, 2024.
+\bibitem{fehervari2024} I. Feh{\'e}rv{\'a}ri and S. Appalaraju, ``Scalable Logo Recognition Using Proxies,'' in \textit{Proc. IEEE WACV}, 2024, pp. 715--725.
+\end{thebibliography}
+
+\end{document}

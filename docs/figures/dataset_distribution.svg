@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="380" viewBox="0 0 600 380" style="background:#0d1526; font-family:sans-serif;">
+  <text x="300" y="36" fill="#f8fafc" font-size="18" font-weight="bold" text-anchor="middle">Dataset Class Split &amp; Partitioning</text>
+  <text x="300" y="58" fill="#94a3b8" font-size="12" text-anchor="middle">Total Samples: 22,511 Labelled Records</text>
+
+  <!-- Bar 1: Legitimate (33.4%) -->
+  <rect x="100" y="110" width="180" height="150" rx="6" fill="#10b981" opacity="0.85"/>
+  <text x="190" y="170" fill="#ecfdf5" font-size="22" font-weight="bold" text-anchor="middle">7,511</text>
+  <text x="190" y="195" fill="#a7f3d0" font-size="13" text-anchor="middle">Legitimate (33.4%)</text>
+  <text x="190" y="220" fill="#d1fae5" font-size="11" text-anchor="middle">Corporate &amp; Benign Domains</text>
+
+  <!-- Bar 2: Phishing (66.6%) -->
+  <rect x="320" y="110" width="180" height="150" rx="6" fill="#ef4444" opacity="0.85"/>
+  <text x="410" y="170" fill="#fef2f2" font-size="22" font-weight="bold" text-anchor="middle">15,000</text>
+  <text x="410" y="195" fill="#fecaca" font-size="13" text-anchor="middle">Phishing (66.6%)</text>
+  <text x="410" y="220" fill="#fee2e2" font-size="11" text-anchor="middle">Spoofs, IP Hosts, Lures</text>
+
+  <!-- Partition Breakdown -->
+  <text x="300" y="310" fill="#94a3b8" font-size="13" text-anchor="middle">Stratified Split: <tspan fill="#38bdf8" font-weight="bold">80% Training</tspan> (18,008 samples)  |  <tspan fill="#38bdf8" font-weight="bold">20% Testing</tspan> (4,503 samples)</text>
+</svg>

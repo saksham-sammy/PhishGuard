@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PhishGuard Shield</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="brand">
+        <span class="shield-icon">🛡️</span>
+        <span class="brand-title">Phish<span class="highlight">Guard</span></span>
+      </div>
+      <div class="status-indicator" id="api-status" title="Backend Status">
+        <span class="dot"></span>
+        <span class="status-label">Online</span>
+      </div>
+    </header>
+
+    <!-- Active Shield Toggle -->
+    <div class="toggle-card">
+      <div class="toggle-info">
+        <span class="toggle-title">Real-Time URL Shield</span>
+        <span class="toggle-desc">Screen URLs before page navigation</span>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="shield-toggle" checked>
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <!-- Current Tab Inspection -->
+    <div class="section-card">
+      <div class="card-header">
+        <span class="section-title">Current Tab Status</span>
+        <button id="btn-recheck" class="btn-icon" title="Rescan tab">↻</button>
+      </div>
+      <div class="url-display" id="current-url">Loading tab...</div>
+      
+      <div class="verdict-banner" id="verdict-box">
+        <span class="verdict-icon" id="verdict-icon">⏳</span>
+        <div class="verdict-text">
+          <div class="verdict-title" id="verdict-title">Analyzing...</div>
+          <div class="verdict-score" id="verdict-score">ML Score: --</div>
+        </div>
+      </div>
+      <div class="warnings-list" id="warnings-container"></div>
+    </div>
+
+    <!-- Quick Manual URL Check -->
+    <div class="section-card">
+      <span class="section-title">Quick URL Inspection</span>
+      <form id="manual-scan-form" class="scan-form">
+        <input type="text" id="manual-url" placeholder="https://..." required>
+        <button type="submit" class="btn-scan">Scan</button>
+      </form>
+    </div>
+
+    <!-- Footer Stats & Links -->
+    <footer class="footer">
+      <span id="threats-blocked">0 threats screened</span>
+      <a href="http://localhost:5173" target="_blank" class="dashboard-link">Open Dashboard ↗</a>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+
+# Node
+node_modules/
+dist/
+.DS_Store
+
+# Vite
+frontend/dist/
+frontend/.vite/
+
+# Model artifacts (generate with train script)
+backend/models/*.pkl
+backend/models/*.joblib
+
+# Data (download with dataset script)
+backend/data/*.csv
+backend/data/*.zip
+backend/data/*.gz
+
+# Database
+*.db
+*.sqlite3
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.local
+.env.production
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+Thumbs.db
