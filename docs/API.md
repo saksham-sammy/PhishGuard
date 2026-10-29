@@ -99,18 +99,20 @@ Returns current model performance stats, confusion matrix, and training metadata
 ```json
 {
   "available": true,
-  "model_name": "Logistic Regression",
-  "dataset_source": "PhiUSIIL Phishing URL Dataset (UCI ML Repository, CC BY 4.0)",
-  "dataset_rows": 22511,
-  "train_size": 18008,
-  "test_size": 4503,
-  "accuracy": 1.0,
-  "precision": 1.0,
-  "recall": 1.0,
-  "f1_score": 1.0,
+  "model_name": "PhishGuard-Stack (Out-of-Fold Calibrated Dual-Modal Ensemble)",
+  "dataset_source": "Hannousse & Yahiouche (2021) Real-World Benchmark (Domain-Disjoint Split)",
+  "dataset_rows": 11429,
+  "train_size": 9143,
+  "test_size": 2286,
+  "accuracy": 0.9300,
+  "precision": 0.9204,
+  "recall": 0.9414,
+  "f1_score": 0.9308,
+  "roc_auc": 0.9833,
+  "brier_score": 0.0494,
   "confusion_matrix": [
-    [1502, 0],
-    [0, 3001]
+    [1050, 93],
+    [67, 1076]
   ],
   "class_labels": ["Legitimate", "Phishing"],
   "feature_importances": {},

@@ -20,10 +20,10 @@ flowchart TD
         DB["SQLite Storage Engine"]
     end
 
-    subgraph ML_Pipeline ["Machine Learning Core"]
-        Extractor["Feature Extractor (24 Features)"]
-        ModelArtifact["Trained Scikit-Learn Model (.joblib)"]
-        RuleEngine["Explainability & Warning Engine"]
+    subgraph ML_Pipeline ["PhishGuard-Stack Dual-Modal Core"]
+        Extractor["Multi-View Extractor (48 Deception & Divergence Features + Char 3-5 Grams)"]
+        ModelArtifact["Out-of-Fold Calibrated Stacking Ensemble (.joblib)"]
+        RuleEngine["Benign-Centroid Attribution & Warning Engine"]
     end
 
     Client --> ScannerView
@@ -78,5 +78,5 @@ flowchart TD
 
 ### 3.3 ML Inference Pipeline
 - **Input Sanitization:** Verifies scheme presence, trims excessive whitespace, and clamps lengths under 2,048 characters.
-- **Feature Vector Generation:** Extracts a 24-dimensional feature vector encompassing length metrics, character counts, structural indicators, and Shannon entropy.
-- **Decision Engine:** Evaluates likelihood using trained estimators (Logistic Regression or Random Forest), classifies risk categories (`high`, `medium`, `low`), and produces rule-based warning explanations.
+- **Dual-Modal Feature Generation:** Extracts a 48-dimensional structured vector across four views (classical lexical primitives, public-suffix topology, homoglyph brand-spoofing/typosquatting, and Dirichlet-smoothed KL-divergence) alongside sublinear TF-IDF character 3–5 grams.
+- **Decision Engine:** Evaluates phishing probability via `PhishGuard-Stack` (L2 Logistic Regression + Balanced Random Forest + Histogram Gradient Boosting + Char n-Gram Linear Margin fused via domain-grouped out-of-fold sigmoid meta-stacking), classifies risk categories (`high`, `medium`, `low`) with epistemic disagreement gating, and computes per-instance benign-centroid feature attributions.

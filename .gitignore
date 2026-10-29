@@ -31,8 +31,20 @@ backend/models/*.joblib
 
 # Data (download with dataset script)
 backend/data/*.csv
+backend/data/*.json
+backend/data/*.txt
 backend/data/*.zip
 backend/data/*.gz
+
+# LaTeX build artifacts
+*.aux
+*.toc
+*.lof
+*.lot
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
 
 # Database
 *.db

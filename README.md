@@ -13,7 +13,7 @@ An academic cybersecurity project engineered as a full-stack, fetch-free machine
 
 ## 1. Project Overview
 
-PhishGuard accepts a user-provided URL, extracts 24 structural, lexical, and information-theoretic URL features, and applies a trained machine-learning classifier to predict whether the destination is potentially phishing or legitimate.
+PhishGuard-Stack accepts a user-provided URL, extracts 48 multi-view structural, brand-deception, and information-theoretic features alongside character 3–5 gram TF-IDF representations without making any network request, and applies a domain-grouped out-of-fold calibrated stacking ensemble (`PhishGuard-Stack`) to predict phishing probability (**93.00% domain-disjoint accuracy**, **0.9833 ROC-AUC** on Hannousse & Yahiouche 2021; **92.25%** zero-shot on Ebbu2017; **90.33%** live recall on 2026 OpenPhish).
 
 > [!IMPORTANT]
 > **Safety Notice:** PhishGuard never makes network requests to, renders, or executes content from user-submitted URLs. It operates purely on string-derived syntax to eliminate drive-by download risks and client exploitation. This tool is a machine-learning screening aid, **not a security guarantee**.
@@ -52,18 +52,18 @@ phishguard/
 │   │   ├── core/config.py   # Pydantic BaseSettings
 │   │   ├── schemas/         # Request & response schemas
 │   │   ├── ml/
-│   │   │   ├── feature_extractor.py  # 24 URL feature definitions
-│   │   │   └── model_service.py      # Joblib model loader & inference
+│   │   │   ├── feature_extractor.py  # 48 multi-view URL deception & divergence features
+│   │   │   ├── ensemble.py           # PhishGuard-Stack dual-modal calibrated ensemble
+│   │   │   └── model_service.py      # Joblib model loader, calibration & attribution
 │   │   └── database/db.py   # SQLite parameterized audit logging
 │   ├── training/
-│   │   ├── dataset_loader.py    # UCI PhiUSIIL dataset downloader
-│   │   ├── generate_dataset.py  # Deterministic offline synthetic generator
+│   │   ├── dataset_loader.py    # Real-world phishing benchmark loader
 │   │   ├── feature_extraction.py# Feature pipeline for training data
-│   │   ├── train_model.py       # Trains LR + RF, evaluates, and serializes
+│   │   ├── train_model.py       # Domain-disjoint benchmark, 9 models, baselines & ablations
 │   │   └── evaluate_model.py    # Standalone evaluation script
 │   ├── models/              # Saved model (.joblib) & metrics (.json)
-│   ├── data/                # Dataset CSV files
-│   ├── tests/               # 56 pytest unit and integration tests
+│   ├── data/                # Real benchmark CSV/JSON/live feeds
+│   ├── tests/               # 63 pytest unit and integration tests
 │   └── requirements.txt
 ├── docs/
 │   ├── ARCHITECTURE.md      # System architecture & Mermaid diagrams

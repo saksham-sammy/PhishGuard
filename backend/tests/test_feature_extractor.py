@@ -15,7 +15,9 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from app.ml.feature_extractor import (
     FEATURE_COLUMNS,
+    BASELINE_24_COLUMNS,
     extract_features,
+    extract_registrable_domain,
     features_to_row,
     _is_ip_host,
     _count_subdomains,
@@ -189,3 +191,44 @@ class TestCountSubdomains:
     def test_one_subdomain(self):  assert _count_subdomains("www.example.com") == 1
     def test_deep_subdomain(self): assert _count_subdomains("a.b.c.example.com") == 3
     def test_empty(self):          assert _count_subdomains("") == 0
+
+
+# ---------------------------------------------------------------------------
+# Multi-View Deception & Divergence Features (Views II–IV, 48 total features)
+# ---------------------------------------------------------------------------
+
+class TestMultiViewDeceptionFeatures:
+    def test_feature_count_is_48(self):
+        assert len(FEATURE_COLUMNS) == 48
+        assert len(BASELINE_24_COLUMNS) == 24
+
+    def test_public_suffix_extraction(self):
+        assert extract_registrable_domain("https://portal.sbi.co.in/login") == "sbi.co.in"
+        assert extract_registrable_domain("https://docs.python.org/3/library/") == "python.org"
+
+    def test_authorized_brand_not_flagged_as_spoofing(self):
+        feat = extract_features("https://www.paypal.com/myaccount/summary")
+        assert feat["brand_spoof_score"] == 0.0
+        assert feat["brand_in_subdomain"] == 0
+
+    def test_subdomain_brand_spoofing_detected(self):
+        feat = extract_features("https://paypal.com.account-verify-session.top/auth")
+        assert feat["brand_in_subdomain"] == 1
+        assert feat["brand_spoof_score"] >= 0.9
+        assert feat["suspicious_tld"] == 1
+
+    def test_homoglyph_typosquatting_detected(self):
+        feat = extract_features("http://paypa1-security-check.com/signin")
+        assert feat["brand_spoof_score"] > 0.7 or feat["sld_typosquat_score"] > 0.7
+
+    def test_free_cloud_preview_host_detected(self):
+        feat = extract_features("https://microsoft-365-SharePoint-doc.pages.dev/auth/login")
+        assert feat["free_hosting_host"] == 1
+        assert feat["brand_in_subdomain"] == 1
+
+    def test_kl_divergence_higher_for_dga_host(self):
+        benign = extract_features("https://www.wikipedia.org/wiki/Computer_security")
+        dga = extract_features("http://x9q8z7k2m4v1p0w.xyz/login")
+        assert dga["hostname_kl_divergence"] > benign["hostname_kl_divergence"]
+        assert dga["char_transition_rate"] > benign["char_transition_rate"]
+

@@ -72,22 +72,22 @@ export default function AboutPage() {
             <tbody className="divide-y divide-zinc-800/60 text-zinc-300 font-normal">
               <tr className="hover:bg-zinc-800/20">
                 <td className="py-3 px-3 font-medium text-zinc-200">Zero-Day Detection</td>
-                <td className="py-3 px-3 text-rose-400">4–8 hr lag</td>
+                <td className="py-3 px-3 text-zinc-400">4–8 hr lag</td>
                 <td className="py-3 px-3 text-zinc-400">Real-time</td>
                 <td className="py-3 px-3 text-zinc-400">Real-time</td>
-                <td className="py-3 px-3 text-emerald-400 font-semibold">Immediate (&lt; 1 ms)</td>
+                <td className="py-3 px-3 text-emerald-400 font-semibold">Immediate (~13 ms)</td>
               </tr>
               <tr className="hover:bg-zinc-800/20">
                 <td className="py-3 px-3 font-medium text-zinc-200">Triage Latency</td>
                 <td className="py-3 px-3 text-zinc-400">50–150 ms</td>
-                <td className="py-3 px-3 text-rose-400">1,500–3,500 ms</td>
+                <td className="py-3 px-3 text-zinc-400">1,500–3,500 ms</td>
                 <td className="py-3 px-3 text-zinc-400">1–5 ms</td>
-                <td className="py-3 px-3 text-emerald-400 font-semibold">0.60 ms (Sub-ms)</td>
+                <td className="py-3 px-3 text-emerald-400 font-semibold">12.7 ms Median</td>
               </tr>
               <tr className="hover:bg-zinc-800/20">
                 <td className="py-3 px-3 font-medium text-zinc-200">Client Drive-By Risk</td>
                 <td className="py-3 px-3 text-zinc-400">Moderate</td>
-                <td className="py-3 px-3 text-rose-400">High (Fetches Scripts)</td>
+                <td className="py-3 px-3 text-zinc-400">High (Fetches Scripts)</td>
                 <td className="py-3 px-3 text-zinc-400">None</td>
                 <td className="py-3 px-3 text-emerald-400 font-semibold">Zero (Fetch-Free)</td>
               </tr>
@@ -102,13 +102,13 @@ export default function AboutPage() {
                 <td className="py-3 px-3 font-medium text-zinc-200">Search False Positives</td>
                 <td className="py-3 px-3 text-emerald-400">0%</td>
                 <td className="py-3 px-3 text-zinc-400">Low</td>
-                <td className="py-3 px-3 text-rose-400">High (&gt; 12%)</td>
+                <td className="py-3 px-3 text-zinc-400">High (&gt; 12%)</td>
                 <td className="py-3 px-3 text-emerald-400 font-semibold">0% (Domain Whitelist)</td>
               </tr>
               <tr className="hover:bg-zinc-800/20">
                 <td className="py-3 px-3 font-medium text-zinc-200">Resilience to Partial Failure</td>
                 <td className="py-3 px-3 text-zinc-500">N/A</td>
-                <td className="py-3 px-3 text-rose-400">Fails on timeout</td>
+                <td className="py-3 px-3 text-zinc-400">Fails on timeout</td>
                 <td className="py-3 px-3 text-zinc-500">None</td>
                 <td className="py-3 px-3 text-emerald-400 font-semibold">Dynamic Aggregation</td>
               </tr>
@@ -117,7 +117,7 @@ export default function AboutPage() {
                 <td className="py-3 px-3 text-zinc-500">None</td>
                 <td className="py-3 px-3 text-zinc-400">Low</td>
                 <td className="py-3 px-3 text-zinc-500">Opaque Score</td>
-                <td className="py-3 px-3 text-emerald-400 font-semibold">24 Granular Features</td>
+                <td className="py-3 px-3 text-emerald-400 font-semibold">48 Multi-View Features + Attribution</td>
               </tr>
             </tbody>
           </table>
@@ -173,10 +173,10 @@ export default function AboutPage() {
         <div className="space-y-1.5">
           <h2 className="text-xl sm:text-2xl font-bold text-zinc-100 tracking-tight flex items-center gap-2.5">
             <Binary className="w-5 h-5 text-amber-500" />
-            <span>24-Dimensional Feature Pipeline</span>
+            <span>48-Dimensional Multi-View Deception &amp; Divergence Pipeline</span>
           </h2>
           <p className="text-sm sm:text-base text-zinc-400">
-            Every incoming address is transformed into a deterministic numerical vector in under 0.5 milliseconds.
+            Every incoming address is transformed without network I/O into four complementary structural views plus character n-gram TF-IDF features.
           </p>
         </div>
 
@@ -184,40 +184,40 @@ export default function AboutPage() {
           <div className="p-4 rounded-xl bg-zinc-900/60 border border-zinc-800/80 space-y-2">
             <div className="font-semibold text-zinc-200 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-amber-500"></span>
-              <span>Information Entropy ($H$)</span>
+              <span>KL-Divergence &amp; Information Entropy</span>
             </div>
             <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
-              Computes Shannon entropy across the hostname. High character randomness reliably flags automated Domain Generation Algorithms (DGA) used by malware command-and-control networks.
+              Computes Dirichlet-smoothed Kullback-Leibler divergence against benign domain character priors alongside Shannon entropy and alphanumeric transition rates.
             </p>
           </div>
 
           <div className="p-4 rounded-xl bg-zinc-900/60 border border-zinc-800/80 space-y-2">
             <div className="font-semibold text-zinc-200 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-sky-500"></span>
-              <span>Deceptive Obfuscation Delimiters</span>
+              <span>Homoglyph Brand-Domain Asymmetry</span>
             </div>
             <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
-              Identifies RFC 3986 userinfo trickery (<code className="text-amber-400 font-mono">@</code> symbols), open redirection forward slashes (<code className="text-amber-400 font-mono">//</code>), and executable scripts hidden in paths (<code className="text-amber-400 font-mono">.php</code>, <code className="text-amber-400 font-mono">.asp</code>).
+              Detects visual confusables (<code className="text-amber-400 font-mono">paypa1</code>, <code className="text-amber-400 font-mono">rnicrosoft</code>), bounded Levenshtein typosquatting, and unauthorized brand placement in subdomains.
             </p>
           </div>
 
           <div className="p-4 rounded-xl bg-zinc-900/60 border border-zinc-800/80 space-y-2">
             <div className="font-semibold text-zinc-200 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-              <span>Credential Lure Token Scanning</span>
+              <span>Public-Suffix-Aware Host Topology</span>
             </div>
             <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
-              Quantifies urgency lure words (e.g., <em>secure</em>, <em>verify</em>, <em>update</em>, <em>banking</em>, <em>login</em>) often placed in subdomains to trick mobile browser views.
+              Decomposes multi-label country TLDs (<code className="text-amber-400 font-mono">.co.in</code>, <code className="text-amber-400 font-mono">.ac.uk</code>), free cloud preview hosts, misplaced <code className="text-amber-400 font-mono">www</code> labels, and embedded TLD decoys.
             </p>
           </div>
 
           <div className="p-4 rounded-xl bg-zinc-900/60 border border-zinc-800/80 space-y-2">
             <div className="font-semibold text-zinc-200 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-rose-500"></span>
-              <span>Host &amp; Protocol Topology</span>
+              <span className="w-2 h-2 rounded-full bg-indigo-400"></span>
+              <span>Dual-Modal Calibrated Stacking</span>
             </div>
             <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
-              Differentiates legitimate domain names from raw IPv4/IPv6 addresses, evaluates unencrypted HTTP usage, and flags known URL shortener redirects (Bitly, TinyURL).
+              Fuses L2 Logistic Regression, Balanced Random Forest, Histogram Gradient Boosting, and Character 3–5 Gram TF-IDF margins via out-of-fold sigmoid meta-stacking.
             </p>
           </div>
         </div>
@@ -227,28 +227,28 @@ export default function AboutPage() {
       <div className="card p-6 sm:p-8 space-y-5">
         <h2 className="text-xl sm:text-2xl font-bold text-zinc-100 tracking-tight flex items-center gap-2.5">
           <Database className="w-5 h-5 text-amber-500" />
-          <span>Multi-Source Training Dataset</span>
+          <span>Domain-Disjoint Real-World Evaluation</span>
         </h2>
         <div className="space-y-3.5 text-sm sm:text-base text-zinc-300 leading-relaxed">
           <p>
-            PhishGuard is trained on a unified, deduplicated corpus of <strong>22,511 verified URLs</strong> consolidated from Kaggle competition archives, PhishTank verified threat feeds, and the UCI Machine Learning Repository (PhiUSIIL benchmark).
+            PhishGuard-Stack is trained and evaluated under strict <strong>registrable-domain-disjoint partitioning</strong> on <strong>11,429 real-world URLs</strong> across <strong>7,188 unique registrable domains</strong> (Hannousse &amp; Yahiouche, 2021), achieving <strong>93.00% test accuracy</strong> (0.9833 ROC-AUC), plus zero-shot validation on <strong>10,000 Ebbu2017 URLs (92.25%)</strong> and <strong>300 live 2026 OpenPhish URLs (90.33% recall)</strong>.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
             <div className="p-3.5 rounded-xl bg-zinc-900/60 border border-zinc-800 text-center">
-              <div className="text-2xl font-bold font-mono text-zinc-100">22,511</div>
-              <div className="text-xs text-zinc-400 mt-0.5">Total Unified Records</div>
+              <div className="text-2xl font-bold font-mono text-zinc-100">11,429</div>
+              <div className="text-xs text-zinc-400 mt-0.5">Primary Real URLs (7,188 Domains)</div>
             </div>
             <div className="p-3.5 rounded-xl bg-zinc-900/60 border border-zinc-800 text-center">
-              <div className="text-2xl font-bold font-mono text-zinc-100">18,008</div>
-              <div className="text-xs text-zinc-400 mt-0.5">Training Set (80%)</div>
+              <div className="text-2xl font-bold font-mono text-zinc-100">9,143</div>
+              <div className="text-xs text-zinc-400 mt-0.5">Domain-Disjoint Train (80%)</div>
             </div>
             <div className="p-3.5 rounded-xl bg-zinc-900/60 border border-zinc-800 text-center">
-              <div className="text-2xl font-bold font-mono text-zinc-100">4,503</div>
-              <div className="text-xs text-zinc-400 mt-0.5">Held-out Test (20%)</div>
+              <div className="text-2xl font-bold font-mono text-zinc-100">2,286</div>
+              <div className="text-xs text-zinc-400 mt-0.5">Unseen-Domain Test (93.00% Acc)</div>
             </div>
           </div>
           <p className="text-xs sm:text-sm text-zinc-400 pt-1">
-            Data splits use stratified random sampling with fixed seeds (<code className="text-zinc-300 font-mono">random_state=42</code>) to ensure complete experimental reproducibility and zero label leakage.
+            Data splits use <code className="text-zinc-300 font-mono">StratifiedGroupKFold</code> grouped by registrable root domain (<code className="text-zinc-300 font-mono">eTLD+1</code>) so zero domains overlap between training and testing.
           </p>
         </div>
       </div>
@@ -271,7 +271,7 @@ export default function AboutPage() {
           </div>
           <div className="py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
             <span className="text-zinc-400 font-medium">Machine Learning Core</span>
-            <span className="text-zinc-200 font-mono text-xs sm:text-sm">scikit-learn · Random Forest (150 trees) · Logistic Regression</span>
+            <span className="text-zinc-200 font-mono text-xs sm:text-sm">PhishGuard-Stack · LR + Balanced RF + HistGB + Char 3–5 Gram TF-IDF</span>
           </div>
           <div className="py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
             <span className="text-zinc-400 font-medium">Browser Protection</span>

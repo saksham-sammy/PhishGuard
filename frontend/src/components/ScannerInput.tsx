@@ -112,7 +112,7 @@ export default function ScannerInput({ onScan, loading, error }: ScannerInputPro
       </div>
 
       {displayError && (
-        <div className="text-sm text-rose-400 bg-rose-950/20 border border-rose-900/30 rounded-xl px-4 py-2.5">
+        <div className="text-sm text-amber-300 bg-zinc-900/80 border border-zinc-700/80 rounded-xl px-4 py-2.5">
           {displayError}
         </div>
       )}

@@ -49,11 +49,11 @@
   }
 
   .badge-high {
-    @apply bg-rose-500/10 text-rose-300 border border-rose-500/25 px-3 py-1 rounded-full text-xs font-semibold;
+    @apply bg-amber-500/10 text-amber-300 border border-amber-500/25 px-3 py-1 rounded-full text-xs font-semibold;
   }
 
   .badge-medium {
-    @apply bg-amber-500/10 text-amber-300 border border-amber-500/25 px-3 py-1 rounded-full text-xs font-semibold;
+    @apply bg-sky-500/10 text-sky-300 border border-sky-500/25 px-3 py-1 rounded-full text-xs font-semibold;
   }
 
   .badge-low {

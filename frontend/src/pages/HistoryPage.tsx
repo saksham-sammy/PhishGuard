@@ -1,6 +1,6 @@
-// Scan History page — Live real-time audit log categorized by Safe, Moderate, and High Risk
+// Scan History page — Live real-time audit log with calm neutral palette
 import { useEffect, useState, useRef } from 'react'
-import { Trash2, RefreshCw, Download, Search, ShieldCheck, AlertCircle, AlertTriangle, Radio } from 'lucide-react'
+import { Trash2, RefreshCw, Download, Search, ShieldCheck, AlertTriangle, Radio } from 'lucide-react'
 import { fetchHistory, clearHistory } from '../services/api'
 import type { HistoryEntry } from '../types'
 
@@ -8,7 +8,7 @@ type RiskFilter = 'all' | 'high' | 'medium' | 'low'
 
 export default function HistoryPage() {
   const [entries, setEntries] = useState<HistoryEntry[]>([])
-  const [total, setTotal] = useState(0)
+  const [, setTotal] = useState(0)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [searchQuery, setSearchQuery] = useState('')
@@ -36,7 +36,6 @@ export default function HistoryPage() {
     }
   }
 
-  // Auto-refresh interval (every 3 seconds) for real-time browsing updates
   useEffect(() => {
     isMounted.current = true
     load(false)
@@ -45,8 +44,7 @@ export default function HistoryPage() {
       load(true)
     }, 3000)
 
-    // Listen for live extension scan events
-    const handleLiveScan = (e: any) => {
+    const handleLiveScan = () => {
       load(true)
     }
     window.addEventListener('phishguard-live-scan', handleLiveScan)
@@ -87,9 +85,8 @@ export default function HistoryPage() {
     link.click()
   }
 
-  // Filter calculations
   const countHigh = entries.filter(e => e.risk_category === 'high' || e.predicted_class === 'phishing').length
-  const countMedium = entries.filter(e => e.risk_category === 'medium').length
+  const countMedium = entries.filter(e => e.risk_category === 'medium' && e.predicted_class !== 'phishing').length
   const countLow = entries.filter(e => e.risk_category === 'low' && e.predicted_class !== 'phishing').length
 
   const filtered = entries.filter(e => {
@@ -97,7 +94,7 @@ export default function HistoryPage() {
     if (!matchesSearch) return false
 
     if (activeFilter === 'high') return e.risk_category === 'high' || e.predicted_class === 'phishing'
-    if (activeFilter === 'medium') return e.risk_category === 'medium'
+    if (activeFilter === 'medium') return e.risk_category === 'medium' && e.predicted_class !== 'phishing'
     if (activeFilter === 'low') return e.risk_category === 'low' && e.predicted_class !== 'phishing'
     return true
   })
@@ -117,7 +114,7 @@ export default function HistoryPage() {
             </span>
           </div>
           <p className="text-sm sm:text-base text-zinc-400 mt-1">
-            Real-time audit log of addresses screened across open tabs and the browser extension.
+            Query-redacted audit log of addresses screened across the console and browser extension.
           </p>
         </div>
 
@@ -133,14 +130,14 @@ export default function HistoryPage() {
             <span>Refresh</span>
           </button>
           {entries.length > 0 && (
-            <button onClick={handleClear} className="btn-secondary text-rose-400 hover:text-rose-300 p-2 sm:px-3" title="Clear history">
+            <button onClick={handleClear} className="btn-secondary text-zinc-400 hover:text-zinc-200 p-2 sm:px-3" title="Clear history">
               <Trash2 className="w-4 h-4" />
             </button>
           )}
         </div>
       </div>
 
-      {/* ── Category Filter Tabs (Safe, Moderate, High Risk, All) ── */}
+      {/* ── Category Filter Tabs ── */}
       <div className="flex flex-wrap items-center gap-2 pt-2 border-b border-zinc-800/80 pb-4">
         <button
           onClick={() => setActiveFilter('all')}
@@ -157,31 +154,31 @@ export default function HistoryPage() {
           onClick={() => setActiveFilter('high')}
           className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-medium transition-all ${
             activeFilter === 'high'
-              ? 'bg-rose-500 text-white font-semibold shadow-sm shadow-rose-900/30'
-              : 'bg-rose-500/10 text-rose-400 hover:bg-rose-500/15 border border-rose-500/20'
+              ? 'bg-amber-500 text-zinc-950 font-semibold shadow-sm'
+              : 'bg-amber-500/10 text-amber-300 hover:bg-amber-500/15 border border-amber-500/25'
           }`}
         >
-          <AlertCircle className="w-3.5 h-3.5" />
-          <span>High Risk / Phishing ({countHigh})</span>
+          <AlertTriangle className="w-3.5 h-3.5" />
+          <span>Flagged / Elevated ({countHigh})</span>
         </button>
 
         <button
           onClick={() => setActiveFilter('medium')}
           className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-medium transition-all ${
             activeFilter === 'medium'
-              ? 'bg-amber-500 text-zinc-950 font-semibold shadow-sm shadow-amber-900/30'
-              : 'bg-amber-500/10 text-amber-400 hover:bg-amber-500/15 border border-amber-500/20'
+              ? 'bg-sky-400 text-zinc-950 font-semibold shadow-sm'
+              : 'bg-sky-500/10 text-sky-300 hover:bg-sky-500/15 border border-sky-500/25'
           }`}
         >
           <AlertTriangle className="w-3.5 h-3.5" />
-          <span>Moderate Risk ({countMedium})</span>
+          <span>Moderate ({countMedium})</span>
         </button>
 
         <button
           onClick={() => setActiveFilter('low')}
           className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-medium transition-all ${
             activeFilter === 'low'
-              ? 'bg-emerald-500 text-zinc-950 font-semibold shadow-sm shadow-emerald-900/30'
+              ? 'bg-emerald-500 text-zinc-950 font-semibold shadow-sm'
               : 'bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/15 border border-emerald-500/20'
           }`}
         >
@@ -222,7 +219,7 @@ export default function HistoryPage() {
         <div className="card overflow-hidden p-0 divide-y divide-zinc-800/80">
           {filtered.map(e => {
             const isHigh = e.risk_category === 'high' || e.predicted_class === 'phishing'
-            const isMedium = e.risk_category === 'medium'
+            const isMedium = e.risk_category === 'medium' && !isHigh
 
             return (
               <div key={e.id} className="p-4 sm:p-5 flex items-center justify-between gap-4 text-sm hover:bg-zinc-800/30 transition-colors">
@@ -243,12 +240,12 @@ export default function HistoryPage() {
                   )}
                   <span className={`px-3 py-1 rounded-full text-xs font-semibold border ${
                     isHigh
-                      ? 'bg-rose-500/15 text-rose-300 border-rose-500/30'
-                      : isMedium
                       ? 'bg-amber-500/15 text-amber-300 border-amber-500/30'
+                      : isMedium
+                      ? 'bg-sky-500/15 text-sky-300 border-sky-500/30'
                       : 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30'
                   }`}>
-                    {isHigh ? 'High Risk' : isMedium ? 'Moderate' : 'Safe'}
+                    {isHigh ? 'Flagged' : isMedium ? 'Moderate' : 'Safe'}
                   </span>
                 </div>
               </div>

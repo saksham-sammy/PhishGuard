@@ -49,7 +49,7 @@ export default function Navbar({ active, onNav, backendOnline }: NavbarProps) {
         <div className="flex items-center gap-2 text-xs font-medium text-zinc-400">
           <span className={`w-2 h-2 rounded-full ${
             backendOnline === null ? 'bg-zinc-600 animate-pulse' :
-            backendOnline ? 'bg-emerald-500' : 'bg-rose-500'
+            backendOnline ? 'bg-emerald-500' : 'bg-amber-500'
           }`} />
           <span className="hidden sm:inline text-xs text-zinc-400">
             {backendOnline === null ? 'Connecting' : backendOnline ? 'Engine Online' : 'Engine Offline'}

@@ -12,9 +12,13 @@ export default function App() {
   const [backendOnline, setBackendOnline] = useState<boolean | null>(null)
 
   useEffect(() => {
-    healthCheck()
-      .then(() => setBackendOnline(true))
-      .catch(() => setBackendOnline(false))
+    const check = () =>
+      healthCheck()
+        .then(() => setBackendOnline(true))
+        .catch(() => setBackendOnline(false))
+    check()
+    const timer = setInterval(check, 8000)
+    return () => clearInterval(timer)
   }, [])
 
   return (
@@ -29,7 +33,7 @@ export default function App() {
       </main>
 
       <footer className="border-t border-zinc-900 py-6 text-center text-xs sm:text-sm text-zinc-500">
-        PhishGuard · Academic Cybersecurity Project · Machine-learning predictions are screening indicators
+        PhishGuard-Stack · PCET&apos;s Pimpri Chinchwad University, Pune · Machine-learning predictions are screening indicators
       </footer>
     </div>
   )

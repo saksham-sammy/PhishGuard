@@ -12,12 +12,12 @@ interface ExampleLink {
 }
 
 const EXAMPLES: ExampleLink[] = [
-  { title: 'Brand Spoof', url: 'http://paypal-secure-login.com', note: 'Hyphenated brand lure' },
-  { title: 'Raw IP Host', url: 'http://192.168.1.1/login.php', note: 'Direct IP address' },
+  { title: 'Subdomain Cloak', url: 'http://accounts.google.com.verify-session.top/login', note: 'Embedded TLD + brand spoof' },
+  { title: 'Cloud Preview', url: 'https://microsoft-office365-auth.pages.dev/login', note: 'Shared cloud host lure' },
+  { title: 'Homoglyph Spoof', url: 'http://paypa1-secure-update.tk/signin', note: 'Leetspeak paypa1 lure' },
   { title: '@ Redirect', url: 'http://www.paypal.com@verify-account-security-alert.xyz/update', note: 'RFC 3986 trick' },
-  { title: 'Subdomain Cloak', url: 'http://apple.com.login-verify-account.security-update.online/auth', note: 'Deep nesting' },
-  { title: 'Normal Search', url: 'https://www.google.com/search?q=seminar+report+latex', note: 'Google search query' },
-  { title: 'Safe Domain', url: 'https://www.github.com', note: 'Official repository' },
+  { title: 'Indian Bank (.co.in)', url: 'https://www.sbi.co.in/web/personal-banking', note: 'Multi-label country domain' },
+  { title: 'Python Docs', url: 'https://docs.python.org/3/library/urllib.parse.html', note: 'Deep technical documentation' },
 ]
 
 export default function ScannerPage() {
@@ -41,13 +41,13 @@ export default function ScannerPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-6 py-12 sm:py-16 space-y-10">
-      {/* ── Sleek Minimalist Hero (No distracting middle logo) ── */}
+      {/* ── Sleek Minimalist Hero ── */}
       <div className="text-center space-y-3.5">
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-zinc-100 tracking-tight">
           Check any web link before you click.
         </h1>
         <p className="text-base sm:text-lg text-zinc-400 max-w-xl mx-auto leading-relaxed font-normal">
-          Instant, privacy-first URL screening. Structural and lexical indicators are evaluated safely without connecting to the remote host.
+          Instant, privacy-first URL screening. Structural, topological, and lexical signals are evaluated safely without connecting to the remote host.
         </p>
       </div>
 
@@ -87,7 +87,7 @@ export default function ScannerPage() {
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500/80"></span>
           Zero-Fetch Inspection · Zero Client Risk
         </span>
-        <span>Evaluated on 22,500+ Verified &amp; Kaggle Records</span>
+        <span>Domain-Disjoint Validated · 93.00% Test Acc (0.9833 ROC-AUC)</span>
       </div>
     </div>
   )
