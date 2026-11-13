@@ -1,5 +1,14 @@
 # PhishGuard — AI-Based Phishing URL Detection System Using Machine Learning
 
+## 📥 Direct Download
+
+[![Download ZIP](https://img.shields.io/badge/Download-Source_Code_(ZIP)-2ea44f?style=for-the-badge&logo=github)](https://github.com/sammy-master/phishguard/archive/refs/heads/main.zip)
+
+> **Quick Download**: Click the badge above to download the latest source code as a `.zip` archive directly from GitHub, or use **Code > Download ZIP**.
+
+---
+
+
 [![Python](https://img.shields.io/badge/Python-3.14-blue.svg)](https://python.org)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115.5-009688.svg)](https://fastapi.tiangolo.com)
 [![React](https://img.shields.io/badge/React-18.3.1-61DAFB.svg)](https://react.dev)
