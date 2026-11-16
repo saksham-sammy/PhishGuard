@@ -66,3 +66,14 @@ backend/data/*.gz
 
 # OS
 Thumbs.db
+
+# Local tooling & environment
+.env.*
+!.env.example
+!.env.template
+AGENTS.md
+GEMINI.md
+CLAUDE.md
+.cursorrules
+AI_SHARED_MEMORY.md
+.gitpulse/
